@@ -30,14 +30,15 @@ Things you may want to cover:
 | Column             | Type   | Options                  |
 | ------------------ | ------ | ------------------------ |
 | nickname           | string | null: false              |
-| mail               | string | null: false,unique: true |
-| password           | string | null: false              |
-| name               | string | null: false              |
-| birth              | string | null: false              |
+| email              | string | null: false,unique: true |
+| encrypted_password | string | null: false              |
+| first_name_kanji   | string | null: false              |
+| last_name_kanji    | string | null: false              |
+| first_name         | string | null: false              |
+| last_name          | string | null: false              |
+| birth              | date   | null: false              |
 
 - has_many :items
-- has_many :comments, through: :items
-- has_many :comments
 
 ## items テーブル
 
@@ -45,11 +46,18 @@ Things you may want to cover:
 | ------------ | ---------- | ------------------------------ |
 | title        | string     | null: false                    |
 | expantion    | text       | null: false                    |
+| category     | string     | null: false                    |
+| state        | string     | null: false                    |
+| delivery_cost| string     | null: false                    |
+| region       | string     | null: false                    |
+| date         | string     | null: false                    |
+| price        | string     | null: false                    |
 | user         | references | null: false, foreign_key: true |
 
 - belong_to :user
 - has_many :comments
 - has_one :order
+- has_one :history
 
 ## comments テーブル
 
@@ -69,8 +77,21 @@ Things you may want to cover:
 | information | string     | null: false                    |
 | month       | string     | null: false                    |
 | code        | string     | null: false                    |
-| address     | string     | null: false                    |
-| tel         | string     | null: false                    |
+| postal_code | string     | null: false                    |
+| prefecture  | string     | null: false                    |
+| city        | text       | null: false                    |
+| address     | text       | null: false                    |
+| building    | text       | null: false                    |
+| number      | text       | null: false                    |
 
 - belongs_to :item
 
+## history テーブル
+
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| user        | references | null: false, foreign_key: true |
+| item        | references | null: false, foreign_key: true |
+
+- belong_to :user
+- belong_to :item
