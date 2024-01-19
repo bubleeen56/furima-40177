@@ -39,24 +39,24 @@ Things you may want to cover:
 | birth              | date   | null: false              |
 
 - has_many :items
+- has_many :history
 
 ## items テーブル
 
-| Column       | Type       | Options                        |
-| ------------ | ---------- | ------------------------------ |
-| title        | string     | null: false                    |
-| expantion    | text       | null: false                    |
-| category     | string     | null: false                    |
-| state        | string     | null: false                    |
-| delivery_cost| string     | null: false                    |
-| region       | string     | null: false                    |
-| date         | string     | null: false                    |
-| price        | string     | null: false                    |
-| user         | references | null: false, foreign_key: true |
+| Column          | Type       | Options                        |
+| ----------------| ---------- | ------------------------------ |
+| title           | string     | null: false                    |
+| expantion       | text       | null: false                    |
+| category _id    | integer    | null: false                    |
+| status_id       | integer    | null: false                    |
+| delivery_cost_id| integer    | null: false                    |
+| prefecture_id   | integer    | null: false                    |
+| date_id         | integer    | null: false                    |
+| price           | integer    | null: false                    |
+| user            | references | null: false, foreign_key: true |
 
 - belong_to :user
 - has_many :comments
-- has_one :order
 - has_one :history
 
 ## comments テーブル
@@ -72,19 +72,17 @@ Things you may want to cover:
 
 ## order テーブル
 
-| Column      | Type       | Options                        |
-| ----------- | ---------- | ------------------------------ |
-| information | string     | null: false                    |
-| month       | string     | null: false                    |
-| code        | string     | null: false                    |
-| postal_code | string     | null: false                    |
-| prefecture  | string     | null: false                    |
-| city        | text       | null: false                    |
-| address     | text       | null: false                    |
-| building    | text       | null: false                    |
-| number      | text       | null: false                    |
+| Column         | Type       | Options                        |
+| ---------------| ---------- | ------------------------------ |
+| postal_code    | string     | null: false                    |
+| prefecture_id  | integer    | null: false                    |
+| city           | string     | null: false                    |
+| address        | string     | null: false                    |
+| building       | string     |                                |
+| number         | string     | null: false                    |
 
 - belongs_to :item
+- belongs_to :history
 
 ## history テーブル
 
@@ -95,3 +93,4 @@ Things you may want to cover:
 
 - belong_to :user
 - belong_to :item
+- belongs_to :order
