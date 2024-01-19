@@ -39,7 +39,7 @@ Things you may want to cover:
 | birth              | date   | null: false              |
 
 - has_many :items
-- has_many :historys
+- has_many :histories
 
 ## items テーブル
 
@@ -80,7 +80,9 @@ Things you may want to cover:
 | address        | string     | null: false                    |
 | building       | string     |                                |
 | number         | string     | null: false                    |
-| item           | references | null: false, foreign_key: true |
+| history        | references | null: false, foreign_key: true |
+
+- belongs_to :history
 
 
 ## history テーブル
@@ -92,4 +94,4 @@ Things you may want to cover:
 
 - belong_to :user
 - belong_to :item
-- belongs_to :order
+- has_one :order
