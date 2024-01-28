@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true
   validates :password, presence: true
-  validates_format_of :password, with: /\A(?=.*[a-zA-Z])(?=.*\d)/, message: "is invalid. Include both letters and numbers"
+  validates_format_of :password, with: /\A(?=.*[a-zA-Z])(?=.*\d).*\z/, message: "is invalid. Include both letters and numbers"
   validates :first_name_kanji, presence: true
   validates :first_name, format: { with: /\A[^\p{Alnum}]*\p{Katakana}+[^\p{Alnum}]*\z/, message: "is invalid. Input full-width characters" }
   validates :last_name_kanji, presence: true
