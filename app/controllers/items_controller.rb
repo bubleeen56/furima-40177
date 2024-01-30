@@ -11,15 +11,18 @@ class ItemsController < ApplicationController
   end
 
   def create
-    # @item = current_user.items.build(item_params)
-    # if @item.save
-    #   redirect_to root_path
-    # else
-    #   render :new, status: :unprocessable_entity
-    # end
+    @item = current_user.items.build(item_params)
+    if @item.save
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
+  def item_params
+    params.require(:item).permit(:image).merge(user_id: current_user.id)
+  end
 
   def set_item
     # @item = item.find(params[:id])
