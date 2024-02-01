@@ -4,14 +4,15 @@ class ItemsController < ApplicationController
   before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
+    @items = Item.order("created_at DESC")
   end
 
   def new
-    # @item = Item.new
+     @item = Item.new
   end
 
   def create
-    @item = current_user.items.build(item_params)
+    @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
     else
@@ -21,7 +22,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:image).merge(user_id: current_user.id)
+    params.require(:item).permit(:title,:expantion,:category_id)
   end
 
   def set_item
