@@ -5,14 +5,14 @@ class Item < ApplicationRecord
   belongs_to :delivery_cost
   belongs_to :schedule
   belongs_to :prefecture
+  belongs_to :user 
 
   validates :title, :expantion, presence: true
-  validates :category, numericality: { other_than: 1, message: "can't be blank"} 
-  validates :status, numericality: { other_than: 1, message: "can't be blank"} 
-  validates :delivery_cost, numericality: { other_than: 1, message: "can't be blank"}
-  validates :schedule, numericality: { other_than: 1, message: "can't be blank"}
-  validates :prefecture, numericality: { other_than: 1, message: "can't be blank"}
-
+  validates :category_id, numericality: { other_than: 1, message: "can't be blank"} 
+  validates :status_id, numericality: { other_than: 1, message: "can't be blank"} 
+  validates :delivery_cost_id, numericality: { other_than: 1, message: "can't be blank"}
+  validates :schedule_id, numericality: { other_than: 1, message: "can't be blank"}
+  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank"}
+  validates :price, presence: { message: "can't be blank" }, numericality: { only_integer: true, greater_than: 0, message: "is not a number"}
   has_one_attached :image
-  
 end
